@@ -11,35 +11,7 @@ use app\models\ContactForm;
 
 class SiteController extends Controller
 {
-    /**
-     * @inheritdoc
-     */
-    public function behaviors()
-    {
-        return [
-            'access' => [
-                'class' => AccessControl::className(),
-                'only' => ['logout'],
-                'rules' => [
-                    [
-                        'actions' => ['logout'],
-                        'allow' => true,
-                        'roles' => ['@'],
-                    ],
-                ],
-            ],
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'logout' => ['post'],
-                ],
-            ],
-        ];
-    }
 
-    /**
-     * @inheritdoc
-     */
     public function actions()
     {
         return [
@@ -60,6 +32,7 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        echo "hello!";
         return $this->render('index');
     }
 
@@ -112,12 +85,7 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
-////////////////////////////
-    public function actionCreate()
-    {
-      echo "string";
-    }
-/////////////////////////////
+
     /**
      * Displays about page.
      *
