@@ -64,43 +64,11 @@ class SiteController extends Controller
     }
 
     /**
-     * Login action.
-     *
-     * @return string
-     */
-    public function actionLogin()
-    {
-        if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
-        }
-
-        $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
-        }
-        return $this->render('login', [
-            'model' => $model,
-        ]);
-    }
-
-    /**
-     * Logout action.
-     *
-     * @return string
-     */
-    public function actionLogout()
-    {
-        Yii::$app->user->logout();
-
-        return $this->goHome();
-    }
-
-    /**
      * Displays contact page.
      *
      * @return string
      */
-    public function actionContact()
+    public function actionCreate()
     {
         $model = new ContactForm();
         if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
@@ -113,18 +81,19 @@ class SiteController extends Controller
         ]);
     }
 ////////////////////////////
-    public function actionCreate()
+    public function actionEdit()
     {
       echo "string";
     }
 /////////////////////////////
-    /**
-     * Displays about page.
-     *
-     * @return string
-     */
-    public function actionAbout()
+    
+    public function actionDelete()
     {
-        return $this->render('about');
+        echo "loadDelete";
+    }
+
+    public function actionShow()
+    {
+      echo "loadShow";
     }
 }
