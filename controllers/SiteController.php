@@ -102,7 +102,16 @@ class SiteController extends Controller
 
     public function actionDelete()
     {
-        echo "loadDelete";
+      if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+
+          // go to Task model
+          $query = Task::Delete($id);
+          return $this->render('index', ['query' => "Task deleted!"]);
+        }
+       else {
+          // show this if open first time or error
+         return $this->render('deleteTask', ['model' => $model]);
+      }
     }
 
     public function actionShow()
