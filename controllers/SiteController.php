@@ -12,6 +12,7 @@ use app\models\Task;
 use app\models\Tasks;
 use app\models\CreateTask;
 use app\models\DeleteTask;
+use app\models\EditTask;
 
 class SiteController extends Controller
 {
@@ -96,7 +97,30 @@ class SiteController extends Controller
 ////////////////////////////
     public function actionEdit()
     {
-      echo "loadEdit";
+      $model = new EditTask();
+
+      $POST_VARIABLE = Yii::$app->request->post('EditTask');
+      $id = $POST_VARIABLE['id'];
+      //$description = $POST_VARIABLE['description'];
+
+
+
+      //$id = $POST_VARIABLE['id'];
+      if ($id != null) {
+
+          // go to Task model
+
+          $model = Task::Edit($id);
+
+          //$model->name = $id;
+
+          return $this->render('createTask', ['model' => $model]);
+        }
+       else {
+          // show this if open first time or error
+          //$query = Task::Show();
+         return $this->render('editTask', ['model' => $model]);
+      }
 
     }
 /////////////////////////////
@@ -116,7 +140,7 @@ class SiteController extends Controller
         }
        else {
           // show this if open first time or error
-          $query = Task::Show();
+          //$query = Task::Show();
          return $this->render('deleteTask', ['model' => $model]);
       }
     }

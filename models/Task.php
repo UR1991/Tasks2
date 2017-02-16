@@ -20,9 +20,11 @@ class Task extends Tasks
     $newTask->task_description = $description;
     $newTask->save();
   }
-  public function Edit()
+  public function Edit($id)
   {
     //edit task function here
+    //return $edit = Tasks::findOne($id);
+    return $edit = Tasks::find($id)->all();
   }
   public function DeleteTask($data)
   {
