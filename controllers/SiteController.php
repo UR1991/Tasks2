@@ -10,6 +10,7 @@ use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\Task;
 use app\models\Tasks;
+use app\models\CreateTask;
 
 class SiteController extends Controller
 {
@@ -62,7 +63,7 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $query = Task::show();
+        $query = Task::Show();
         return $this->render('index', ['query' => $query]);
     }
 
@@ -73,15 +74,23 @@ class SiteController extends Controller
      */
     public function actionCreate()
     {
-        $model = new ContactForm();
-        if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
-            Yii::$app->session->setFlash('contactFormSubmitted');
+      $model = new CreateTask();
 
-            return $this->refresh();
+      $POST_VARIABLE = Yii::$app->request->post('CreateTask');
+      $name = $POST_VARIABLE['name'];
+      $description = $POST_VARIABLE['description'];
+
+          //try input data
+      if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+
+          // go to Task model
+          $query = Task::Create($name, $description);
+          return $this->render('index', ['query' => $name]);
         }
-        return $this->render('contact', [
-            'model' => $model,
-        ]);
+       else {
+          // show this if open first time or error
+         return $this->render('createTask', ['model' => $model]);
+      }
     }
 ////////////////////////////
     public function actionEdit()
@@ -98,8 +107,9 @@ class SiteController extends Controller
 
     public function actionShow()
     {
-        $query = Task::show();
+        $query = Task::Show();
         return $this->render('index', ['query' => $query]);
 
     }
+
 }

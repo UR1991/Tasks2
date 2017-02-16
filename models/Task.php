@@ -9,9 +9,16 @@ use app\models\Tasks;
 //Task model should
 class Task extends Tasks
 {
-  public function Create()
+  public function Create($name, $description)
   {
+    
     //create task function here
+    $newTask = new Tasks();
+    //$newTask->task_name = $name;
+    //$newTask->task_description = $description;
+    $newTask->task_name = $name;
+    $newTask->task_description = $description;
+    $newTask->save();
   }
   public function Edit()
   {
@@ -24,17 +31,7 @@ class Task extends Tasks
   public function Show()
   {
     //show task function here
-    return $tasks = Task::find()->asArray()->all();
-
-    // получаем строку с первичным ключом "US"
-    //$country = tasks::findOne('1');
-
-    // отобразит "United States"
-    //$idkey = $country->id;
-    //return $idkey;
-    // меняем имя страны на "U.S.A." и сохраняем в базу данных
-    //$country->name = 'U.S.A.';
-    //$country->save();
+    return $tasks = Tasks::find()->asArray()->all();
   }
 }
 
