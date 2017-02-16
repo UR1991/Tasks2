@@ -1,15 +1,5 @@
 <!-- View for creating new tasks -->
-<!--<div class="site-index">
 
-    <form action="site/create">
-      <input type="text"></input>
-      <input type="text"></input>
-      <input type="submit"></input>
-    </form>
-
-    </div>
-</div>
--->
 <?php
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;

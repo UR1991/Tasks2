@@ -6,11 +6,12 @@ use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
-use app\models\LoginForm;
-use app\models\ContactForm;
+//use app\models\LoginForm;
+//use app\models\ContactForm;
 use app\models\Task;
 use app\models\Tasks;
 use app\models\CreateTask;
+use app\models\DeleteTask;
 
 class SiteController extends Controller
 {
@@ -102,14 +103,20 @@ class SiteController extends Controller
 
     public function actionDelete()
     {
-      if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+      $model = new DeleteTask();
+
+      $POST_VARIABLE = Yii::$app->request->post('DeleteTask');
+      $name = $POST_VARIABLE['name'];
+
+      if ($name != null) {
 
           // go to Task model
-          $query = Task::Delete($id);
+          $query = Task::DeleteTask($name);
           return $this->render('index', ['query' => "Task deleted!"]);
         }
        else {
           // show this if open first time or error
+          $query = Task::Show();
          return $this->render('deleteTask', ['model' => $model]);
       }
     }

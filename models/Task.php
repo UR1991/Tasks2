@@ -24,7 +24,7 @@ class Task extends Tasks
   {
     //edit task function here
   }
-  public function Delete($data)
+  public function DeleteTask($data)
   {
     //Delete task function here
     $del = Tasks::findOne($data);
