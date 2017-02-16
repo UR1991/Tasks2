@@ -8,6 +8,8 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\Task;
+use app\models\Tasks;
 
 class SiteController extends Controller
 {
@@ -60,7 +62,8 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $query = Task::show();
+        return $this->render('index', ['query' => $query]);
     }
 
     /**
@@ -83,10 +86,11 @@ class SiteController extends Controller
 ////////////////////////////
     public function actionEdit()
     {
-      echo "string";
+      echo "loadEdit";
+
     }
 /////////////////////////////
-    
+
     public function actionDelete()
     {
         echo "loadDelete";
@@ -94,6 +98,8 @@ class SiteController extends Controller
 
     public function actionShow()
     {
-      echo "loadShow";
+        $query = Task::show();
+        return $this->render('index', ['query' => $query]);
+
     }
 }

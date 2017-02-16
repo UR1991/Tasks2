@@ -8,11 +8,13 @@ $this->title = 'To Do List';
 
     <div class="jumbotron">
 
-        
+
     </div>
 
     <div class="body-content">
-
+<?php echo "<pre>";
+    print_r($query);
+    echo "</pre>"; ?>
 
         </div>
 

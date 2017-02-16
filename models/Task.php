@@ -2,8 +2,12 @@
 
 namespace app\models;
 
+use Yii;
+use yii\base\Model;
+use app\models\Tasks;
+
 //Task model should
-class Task extends Model
+class Task extends Tasks
 {
   public function Create()
   {
@@ -20,6 +24,17 @@ class Task extends Model
   public function Show()
   {
     //show task function here
+    return $tasks = Task::find()->asArray()->all();
+
+    // получаем строку с первичным ключом "US"
+    //$country = tasks::findOne('1');
+
+    // отобразит "United States"
+    //$idkey = $country->id;
+    //return $idkey;
+    // меняем имя страны на "U.S.A." и сохраняем в базу данных
+    //$country->name = 'U.S.A.';
+    //$country->save();
   }
 }
 
